@@ -1,0 +1,124 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "João da Silva",
+      "email": "joao.silva@gmail.com",
+      "birthDate": "10/01/1995"
+    },
+    {
+      "id": 2,
+      "name": "Maria Oliveira",
+      "email": "maria.oliveira@gmail.com",
+      "birthDate": "22/03/1998"
+    },
+    {
+      "id": 3,
+      "name": "Carlos Pereira",
+      "email": "carlos.pereira@gmail.com",
+      "birthDate": "15/07/1994"
+    },
+    {
+      "id": 4,
+      "name": "Ana Souza",
+      "email": "ana.souza@gmail.com",
+      "birthDate": "09/11/1997"
+    },
+    {
+      "id": 5,
+      "name": "Lucas Almeida",
+      "email": "lucas.almeida@gmail.com",
+      "birthDate": "03/02/1996"
+    },
+    {
+      "id": 6,
+      "name": "Fernanda Lima",
+      "email": "fernanda.lima@gmail.com",
+      "birthDate": "18/05/1999"
+    },
+    {
+      "id": 7,
+      "name": "Rafael Costa",
+      "email": "rafael.costa@gmail.com",
+      "birthDate": "27/08/1993"
+    },
+    {
+      "id": 8,
+      "name": "Juliana Martins",
+      "email": "juliana.martins@gmail.com",
+      "birthDate": "14/12/1998"
+    },
+    {
+      "id": 9,
+      "name": "Bruno Rocha",
+      "email": "bruno.rocha@gmail.com",
+      "birthDate": "30/04/1995"
+    },
+    {
+      "id": 10,
+      "name": "Patrícia Gomes",
+      "email": "patricia.gomes@gmail.com",
+      "birthDate": "05/09/1997"
+    },
+    {
+      "id": 11,
+      "name": "Diego Santos",
+      "email": "diego.santos@gmail.com",
+      "birthDate": "19/06/1994"
+    },
+    {
+      "id": 12,
+      "name": "Camila Ribeiro",
+      "email": "camila.ribeiro@gmail.com",
+      "birthDate": "11/10/1996"
+    },
+    {
+      "id": 13,
+      "name": "Thiago Carvalho",
+      "email": "thiago.carvalho@gmail.com",
+      "birthDate": "07/01/1995"
+    },
+    {
+      "id": 14,
+      "name": "Larissa Mendes",
+      "email": "larissa.mendes@gmail.com",
+      "birthDate": "25/03/1998"
+    },
+    {
+      "id": 15,
+      "name": "Gabriel Ferreira",
+      "email": "gabriel.ferreira@gmail.com",
+      "birthDate": "13/07/1993"
+    },
+    {
+      "id": 16,
+      "name": "Beatriz Nascimento",
+      "email": "beatriz.nascimento@gmail.com",
+      "birthDate": "02/12/1999"
+    },
+    {
+      "id": 17,
+      "name": "Eduardo Barbosa",
+      "email": "eduardo.barbosa@gmail.com",
+      "birthDate": "16/05/1996"
+    },
+    {
+      "id": 18,
+      "name": "Mariana Teixeira",
+      "email": "mariana.teixeira@gmail.com",
+      "birthDate": "21/09/1997"
+    },
+    {
+      "id": 19,
+      "name": "Felipe Araujo",
+      "email": "felipe.araujo@gmail.com",
+      "birthDate": "08/04/1994"
+    },
+    {
+      "id": 20,
+      "name": "Isabela Duarte",
+      "email": "isabela.duarte@gmail.com",
+      "birthDate": "29/11/1998"
+    }
+  ]
+}

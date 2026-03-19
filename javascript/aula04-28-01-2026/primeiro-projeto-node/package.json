@@ -1,0 +1,12 @@
+{
+  "name": "primeiro-projeto-node",
+  "version": "1.0.0",
+  "description": "Este é o primeiro projeto do modulo de Back-end trilha Node e C#",
+  "license": "ISC",
+  "author": "Growdev",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

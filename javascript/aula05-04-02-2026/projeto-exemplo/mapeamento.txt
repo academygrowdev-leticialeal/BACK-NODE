@@ -1,0 +1,24 @@
+GET    -> lista recursos ou busca um único recurso
+POST   -> traduz intenção de cadastro ou criação de um recurso
+PUT    -> traduz a intenção de atualização TOTAL de um recurso
+PATCH  -> traduz a intenção de atualização PARCIAL de um recurso
+DELETE -> traduz a intenção de exclusão de um recurso (soft ou permanente)
+
+
+Base URL - https://books-api-j138.onrender.com 
+Route - /books 
+Query Params - Filtros ou parametros que não são obrigatórios. Query params só faz sentido em rotas GET.
+Route Param  - Parametro de rota, serve para buscar ou fazer algo em/com um único registro. 
+Não faz sentido ter um route param em uma rota POST.
+Request body (payload) - Dados enviados como carga necessária para executar a intenção
+Response body - Dados que são retornados pela API/servidor
+
+
+GET /books/10
+
+
+Request - todos os dados da solicitação HTTP
+(baseURL, route, dados enviados, parametros foram enviados, informações de cabeçalho, hora da solicitação, etc)
+Response - 
+
+
