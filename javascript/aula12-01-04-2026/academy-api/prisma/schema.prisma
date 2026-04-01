@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas  = ["academy_api"]
+}
+
+model Pessoa {
+  id             String      @id @default(uuid()) @db.Uuid
+  primeiroNome   String      @map("primeiro_nome") @db.VarChar
+  sobrenome      String      @db.VarChar
+  nomeSocial     String?     @map("nome_social") @db.VarChar
+  email          String      @unique @db.VarChar
+  telefone       String      @db.VarChar(11)
+  dataNascimento DateTime?   @map("data_nascimento") @db.Date
+  ativo          Boolean     @default(true)
+  criadoEm       DateTime    @default(now()) @map("criado_em") @db.Timestamp(6)
+  atualizadoEm   DateTime    @default(now()) @updatedAt @map("atualizado_em") @db.Timestamp(6)
+  observacoes    String?
+  alunos         Aluno[]
+  professores    Professor[]
+
+  @@map("pessoas")
+  @@schema("academy_api")
+}
+
+model Aluno {
+  id              String      @id @default(uuid()) @db.Uuid
+  codigoMatricula String      @unique @map("codigo_matricula") @db.VarChar(10)
+  perfilId        String      @map("perfil_id") @db.Uuid
+  criadoEm        DateTime    @default(now()) @map("criado_em") @db.Timestamp(6)
+  atualizadoEm    DateTime    @default(now()) @updatedAt @map("atualizado_em") @db.Timestamp(6)
+  perfil          Pessoa      @relation(fields: [perfilId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_perfil")
+  matriculas      Matricula[]
+
+  @@map("alunos")
+  @@schema("academy_api")
+}
+
+model Professor {
+  id           String   @id @default(uuid()) @db.Uuid
+  remuneracao  Decimal? @db.Decimal(7, 2)
+  perfilId     String   @map("perfil_id") @db.Uuid
+  criadoEm     DateTime @default(now()) @map("criado_em") @db.Timestamp(6)
+  atualizadoEm DateTime @default(now()) @updatedAt @map("atualizado_em") @db.Timestamp(6)
+  perfil       Pessoa   @relation(fields: [perfilId], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_perfil")
+  turmas       Turma[]
+
+  @@map("professores")
+  @@schema("academy_api")
+}
+
+model Disciplina {
+  id           String   @id @default(uuid()) @db.Uuid
+  titulo       String   @db.VarChar
+  descricao    String?
+  ativo        Boolean  @default(true)
+  criadoEm     DateTime @default(now()) @map("criado_em") @db.Timestamp(6)
+  atualizadoEm DateTime @default(now()) @updatedAt @map("atualizado_em") @db.Timestamp(6)
+  turmas       Turma[]
+
+  @@map("disciplinas")
+  @@schema("academy_api")
+}
+
+model Turma {
+  id           String      @id @default(uuid()) @db.Uuid
+  maxVagas     Int         @map("max_vagas")
+  periodo      String      @db.VarChar(6)
+  status       StatusTurma @default(ABERTA)
+  disciplinaId String      @map("disciplina_id") @db.Uuid
+  professorId  String      @map("professor_id") @db.Uuid
+  ativo        Boolean     @default(true)
+  criadoEm     DateTime    @default(now()) @map("criado_em") @db.Timestamp(6)
+  atualizadoEm DateTime    @default(now()) @updatedAt @map("atualizado_em") @db.Timestamp(6)
+  matriculas   Matricula[]
+  disciplinas  Disciplina  @relation(fields: [disciplinaId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  professores  Professor   @relation(fields: [professorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("turmas")
+  @@schema("academy_api")
+}
+
+model Matricula {
+  id           String            @id @default(uuid()) @db.Uuid
+  alunoId      String            @map("aluno_id") @db.Uuid
+  turmaId      String            @map("turma_id") @db.Uuid
+  nota1        Decimal?          @map("nota_1") @db.Decimal(4, 2)
+  nota2        Decimal?          @map("nota_2") @db.Decimal(4, 2)
+  frequencia   Int?
+  situacao     SituacaoMatricula @default(CURSANDO)
+  criadoEm     DateTime          @default(now()) @map("criado_em") @db.Timestamp(6)
+  atualizadoEm DateTime          @default(now()) @updatedAt @map("atualizado_em") @db.Timestamp(6)
+  alunos       Aluno             @relation(fields: [alunoId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  turmas       Turma             @relation(fields: [turmaId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("matriculas")
+  @@schema("academy_api")
+}
+
+enum SituacaoMatricula {
+  CURSANDO
+  APROVADO
+  REPROVADO
+  TRANCADO
+
+  @@schema("academy_api")
+}
+
+enum StatusTurma {
+  ABERTA
+  ENCERRADA
+
+  @@schema("academy_api")
+}
