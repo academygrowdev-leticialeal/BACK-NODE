@@ -1,22 +1,53 @@
 import type { Request, Response } from "express";
-import { readDb, writeDb } from "../../database/db";
+
 import httpResponse from "../../utils/http-response";
+import { prisma } from "../../database/prisma";
 
 export default async function deleteStudent(req: Request, res: Response) {
     try {
-        const { students } = await readDb();
         const { id } = req.params;
 
-        const studentList = [...students];
+        if (!id || typeof id !== "string") {
+            return httpResponse(res, 400);
+        }
 
-        // buscar um valor de dentro de um array que atenda a uma condição
-        let studentIndex = studentList.findIndex((student) => `${student.id}` === id);
+        // SOFT DELETE
+        // const alunoAtivo = await prisma.aluno.findUnique({
+        //     where: {
+        //         id: id,
+        //         perfil: {
+        //             ativo: true
+        //         }
+        //     }
+        // });
 
-        if (studentIndex === -1) return httpResponse(res, 404);
+        // if (!alunoAtivo) {
+        //     return httpResponse(res, 404);
+        // }
 
-        const [studentDeleted] = studentList.splice(studentIndex, 1);
+        // await prisma.pessoa.update({
+        //     where: { id: alunoAtivo.perfilId },
+        //     data: { ativo: false }
+        // });
 
-        await writeDb({ students: studentList });
+        // NÃO ESTÁ COM CASCADING na relação?
+        // Tem que excluir primeiro o aluno (que é onde tem a FK) e depois o Perfil que é quem é referenciado
+        const studentDeleted = await prisma.$transaction(async (tx) => {
+            const alunoExcluido = await tx.aluno.delete({ where: { id } })
+
+            await tx.pessoa.delete({ where: { id: alunoExcluido.perfilId } })
+
+            return alunoExcluido
+        });
+
+        // ESTÁ COM CASCADING na relação?
+        // const aluno = await prisma.aluno.findUnique({ where: { id } })
+
+        // if (!aluno) {
+        //     return httpResponse(res, 404);
+        // }
+
+        // await prisma.pessoa.delete({ where: { id: aluno.perfilId } })
 
         return httpResponse(res, 200, studentDeleted);
     } catch (error) {
