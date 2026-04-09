@@ -10,6 +10,7 @@ COPY . .
 
 RUN npx prisma generate
 
-EXPOSE 3000
+# NÃO É OBRIGATÓRIO - APENAS DOC
+## EXPOSE 3000 
 
 CMD ["npm", "run", "dev"]

@@ -76,7 +76,7 @@ npm init -y
 
 ```bash
 npm install express @prisma/client@6 dotenv
-npm install -D typescript@5 ts-node-dev @types/node @types/express prisma@6 @types/dotenv
+npm install -D typescript@5 ts-node-dev @types/node @types/express prisma@6
 ```
 
 ## Criar TypeScript
@@ -307,7 +307,7 @@ Gera o Prisma Client com base no schema.
 
 ## `EXPOSE 3000`
 
-Documenta que a aplicação usa a porta 3000.
+Documenta que a aplicação usa a porta 3000. Não é obrigatório.
 
 ## `CMD ["npm", "run", "dev"]`
 
