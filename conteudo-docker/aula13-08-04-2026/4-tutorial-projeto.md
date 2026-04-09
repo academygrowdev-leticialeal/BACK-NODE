@@ -75,8 +75,8 @@ npm init -y
 ## Instalar dependências
 
 ```bash
-npm install express @prisma/client
-npm install -D typescript ts-node-dev @types/node @types/express prisma
+npm install express @prisma/client@6 dotenv
+npm install -D typescript@5 ts-node-dev @types/node @types/express prisma@6 @types/dotenv
 ```
 
 ## Criar TypeScript
